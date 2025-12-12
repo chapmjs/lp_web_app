@@ -154,11 +154,11 @@ with tab1:
         with col2:
             if objective_type == "Maximize (Profit)":
                 if 'load_example' in st.session_state and st.session_state.load_example == "wyndor":
-                    default_profit = [300, 500][i] if i < 2 else 100
+                    default_profit = float([300, 500][i]) if i < 2 else 100.0
                 elif 'load_example' in st.session_state and st.session_state.load_example == "bakery":
-                    default_profit = [2, 8][i] if i < 2 else 10
+                    default_profit = float([2, 8][i]) if i < 2 else 10.0
                 else:
-                    default_profit = 100
+                    default_profit = 100.0
                 
                 profit = st.number_input(f"Profit per Unit ($)", value=default_profit, key=f"profit_{i}", min_value=0.0, step=10.0)
             else:
@@ -189,13 +189,13 @@ with tab1:
         
         with col2:
             if 'load_example' in st.session_state and st.session_state.load_example == "wyndor":
-                default_avail = [4, 12, 18][i] if i < 3 else 100
+                default_avail = float([4, 12, 18][i]) if i < 3 else 100.0
             elif 'load_example' in st.session_state and st.session_state.load_example == "bakery":
-                default_avail = [40, 30, 50][i] if i < 3 else 100
+                default_avail = float([40, 30, 50][i]) if i < 3 else 100.0
             else:
-                default_avail = 100
+                default_avail = 100.0
             
-            available = st.number_input(f"Available Amount", value=float(default_avail), key=f"avail_{i}", min_value=0.0, step=10.0)
+            available = st.number_input(f"Available Amount", value=default_avail, key=f"avail_{i}", min_value=0.0, step=10.0)
         
         resources[res_name] = {"available": available, "usage": {}}
         resource_names.append(res_name)
@@ -216,15 +216,15 @@ with tab1:
     # Load example data if needed
     if 'load_example' in st.session_state and st.session_state.load_example == "wyndor":
         example_usage = [
-            [1, 0],  # Plant 1
-            [0, 2],  # Plant 2
-            [3, 2]   # Plant 3
+            [1.0, 0.0],  # Plant 1
+            [0.0, 2.0],  # Plant 2
+            [3.0, 2.0]   # Plant 3
         ]
     elif 'load_example' in st.session_state and st.session_state.load_example == "bakery":
         example_usage = [
-            [0.5, 2],    # Oven
-            [0.3, 1],    # Mixing
-            [0.2, 1.5]   # Ingredients
+            [0.5, 2.0],    # Oven
+            [0.3, 1.0],    # Mixing
+            [0.2, 1.5]     # Ingredients
         ]
     else:
         example_usage = [[0.0] * num_products for _ in range(num_resources)]
